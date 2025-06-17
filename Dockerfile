@@ -2,11 +2,8 @@
 FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY . .
-
-# ✅ Make mvnw executable
 RUN chmod +x mvnw
-
-RUN ./mvnw clean package -DskipTests
+RUN ./mvnw clean package -DskipTests --no-transfer-progress
 
 # Stage 2: Run
 FROM eclipse-temurin:17-jdk-alpine
